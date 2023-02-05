@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Programa;
 use Livewire\Component;
+use Livewire\WithPagination;
+/*rol*/
 
 class ProgramasLive extends Component
 {
@@ -11,16 +13,30 @@ class ProgramasLive extends Component
     public $search;
     public function render()
     {
-        /*$programas = Programa::all();
-        return view('livewire.programas-live',compact('programas'));*/
-        if($this->search){
-            return view('livewire.programas-live',[
-                'programas' => Programa::where('nombrePrograma','like','%'.$this->search.'%')->paginate($this->cant)
-            ]);
-        }else{
-            return view('livewire.programas-live',[
-                'programas' => Programa::paginate($this->cant)
-            ]);
+        if(auth()->user()->hasRole('administrador')){
+            if($this->search){
+                return view('livewire.programas-live',[
+                    'programas' => Programa::where('nombrePrograma','like','%'.$this->search.'%')->paginate($this->cant)
+                ]);
+            }else{
+                return view('livewire.programas-live',[
+                    'programas' => Programa::paginate($this->cant)
+                ]);
+            }
+        }
+        else{
+            if(auth()->user()->hasRole('coordinador')){
+                if($this->search){
+                    return view('livewire.programas-live',[
+                        'programas' => Programa::where('nombrePrograma','like','%'.$this->search.'%')
+                                                ->where('coordinador_id', auth()->user()->id)->paginate($this->cant)
+                    ]);
+                }else{
+                    return view('livewire.programas-live',[
+                        'programas' => Programa::where('coordinador_id', auth()->user()->id)->paginate($this->cant)
+                    ]);
+                }
+            }
         }
     }
     public function delete($id)

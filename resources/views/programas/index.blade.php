@@ -6,9 +6,14 @@
     {{--programas titulo y boton--}}
     <div class="container">
         <h1>Programas</h1>
-        <a href="{{route('programas.create')}}" class="btn btn-primary float-right">
-            <i class="fas fa-plus"></i>
-            Crear Programa</a>
+        <!--MODIFICADO 30-01-2023-->
+        @role('administrador')
+            <a href="{{route('programas.create')}}" class="btn btn-primary float-right">
+                <i class="fas fa-plus"></i>
+                Crear Programa
+            </a>
+        @endrole
+        <!--FIN MODIFICACION-->
     </div>
 @stop
 

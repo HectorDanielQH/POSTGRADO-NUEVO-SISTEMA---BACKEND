@@ -369,6 +369,33 @@ return [
             'icon' => 'fas fa-fw fa-list',
             'can' => 'administrador.control',
         ],
+        [
+            'header' => 'DASHBOARD',
+            'can' => 'coordinador.control',
+        ],
+        [
+            'text' => 'Home',
+            'route'  => 'home',
+            'icon' => 'fas fa-fw fa-home',
+            'can' => 'coordinador.control',
+        ],
+        [
+            'header' => 'OPCIONES',
+            'can' => 'coordinador.control',
+        ],
+        [
+            'text' => 'Programas',
+            'route'  => 'programas.index',
+            'icon' => 'fas fa-fw fa-list',
+            'can' => 'coordinador.control',
+        ],
+        [
+            'text' => 'Evaluación docente',
+            'url'  => 'https://www.uatfpostgrado.edu.bo/ConvertidorMoodle/',
+            'target' => '_blank',
+            'icon' => 'fas fa-chalkboard-teacher',
+            'can' => 'coordinador.control',
+        ],
         /*[
             'text'    => 'SUB MENU',
             'icon'    => 'fas fa-fw fa-share',

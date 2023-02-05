@@ -49,9 +49,12 @@
                         <a href="{{route('programas.edit', ['programa'=>$programa])}}" class="btn btn-primary">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <button class="btn btn-danger" wire:click="delete({{$programa->id}})">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <!--MODIFICADO 30-01-2023-->
+                        @role('administrador')
+                            <button class="btn btn-danger" wire:click="delete({{$programa->id}})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        @endrole
                         <a href="{{route('verlista', $programa->id)}}" class="btn btn-warning">
                             <i class="fas fa-graduation-cap"></i>
                         </a>
